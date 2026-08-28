@@ -6,11 +6,13 @@ const characters = [
 ];
 const generateBtn = document.getElementById("generate-el")
 const Label_1 = document.getElementById("label_1")
+const Label_2 = document.getElementById("label_2")
+
 const noteEl = document.getElementById("note")
 let generatedPasword = ""
 
 
-function password(){   
+generateBtn.addEventListener("click",function(){   
     let passwordLength = document.getElementById("lengthSlider").value
     let generatedPasword = ""
     for(i=0; i< passwordLength; i++){    
@@ -18,16 +20,35 @@ function password(){
         generatedPasword += randomPass
         console.log(generatedPasword)
 
-        Label_1.textContent = generatedPasword
-       
+        Label_1.textContent = generatedPasword     
     }
 
     noteEl.textContent = "(click on the label to copy)"
-}
+})
+
+generateBtn.addEventListener("click", function(){
+    let passwordLength = document.getElementById("lengthSlider").value
+    let generatedPasword = ""
+    for(i=0; i< passwordLength; i++){    
+    let randomPass =characters[Math.floor(Math.random()*characters.length)]
+    generatedPasword += randomPass
+    console.log(generatedPasword)
+
+    Label_2.textContent = generatedPasword   
+
+    }
+    
+
+})
 
 Label_1.addEventListener("click", function(){
     const textToCopy = Label_1.textContent
     navigator.clipboard.writeText(textToCopy);
+})
+
+Label_2.addEventListener("click" , function(){
+    const textToCopy =  Label_2.textContent
+    navigator.clipboard.writeText(textToCopy)
 })
 
 
@@ -37,8 +58,6 @@ const lengthValue = document.getElementById("length-value");
 lengthSlider.addEventListener("input", function() {
     lengthValue.textContent = this.value + " characters";
 });
-
-
 
 
 
